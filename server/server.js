@@ -21,7 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", require("./routes/UserRoutes"));
 app.use("/", require("./routes/employerRoutes"));
 app.use("/", require("./routes/AuthRoutes"));
-
+app.get("/", (req, res) => {
+  res.send("API is running 🚀");
+});
 app.listen(port, () => {
   console.log("server running at : ", port);
 });
