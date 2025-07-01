@@ -2,12 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Index";
 import ApplyJob from "./pages/applyjob/ApplyJob";
 import PostJob from "./pages/postjob/PostJob";
-import SignUp from "./pages/signup/signup";
 import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/Login";
 import ProtectedRouteJobSeeker from "./components/ProtectedRouteJobSeeker";
 import ProtectedRouteEmployer from "./components/ProtectedRouteEmployer";
 import EmployerDashboard from "./pages/employer-dashboard/EmployerDashboard";
+import SignUp from "./pages/signup/SignUp";
 
 function App() {
   return (
