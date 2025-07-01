@@ -1,0 +1,15 @@
+@import "tailwindcss";
+html,
+body {
+  font-family: "Plus Jakarta Sans", serif;
+  scroll-behavior: smooth;
+}
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+@theme {
+  --color-primary-light: #d95f59;
+  --color-primary-dark: #c63c51;
+  --color-secondary: #522258;
+  --text-xs-custom: 10px;
+}
