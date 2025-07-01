@@ -7,9 +7,13 @@ const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 
 connectDB();
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://job-portal-alpha-nine.vercel.app",
+];
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
