@@ -19,7 +19,7 @@ export default function ManageResume() {
   const handleCloseModal = () => {
     setActiveModal(null);
   };
-  const { userData, handleSave } = useUser();
+  const { handleSave, userData } = useUser();
   const { accessToken } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const dropDownRef = useRef(null);

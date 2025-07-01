@@ -6,20 +6,8 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "resumes",
-    allowed_formats: [
-      "pdf",
-      "doc",
-      "docx",
-      "txt",
-      "jpg",
-      "jpeg",
-      "png",
-      "xlsx",
-      "xls",
-      "rtf",
-      "odt",
-      "txt",
-    ],
+    resource_type: "raw",
+    allowed_formats: undefined,
     public_id: (req, file) => {
       const nameWithoutExt = path.parse(file.originalname).name;
       return `${Date.now()}-${nameWithoutExt}`;

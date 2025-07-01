@@ -19,8 +19,9 @@ exports.updateUserData = async (req, res) => {
         resource_type: "raw",
       });
     }
-    const { filename, mimetype, size, secure_url } = req.file;
-    const publicId = filePath
+    const { filename, mimetype, size, path } = req.file;
+
+    const publicId = path
       .split("/")
       .slice(-2)
       .join("/")
@@ -28,7 +29,7 @@ exports.updateUserData = async (req, res) => {
 
     updates.resume = {
       filename,
-      filepath: secure_url,
+      filepath: path,
       mimetype,
       size,
       uploadedAt: new Date(),

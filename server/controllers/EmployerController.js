@@ -23,7 +23,6 @@ exports.dashboardData = async (req, res) => {
   const applications = await JobApplication.find({
     "jobDetails.companyEmail": employer.email,
   });
-  console.log(totalApplications, applications);
   const totalJobsPosted = await Job.find({
     companyEmail: employer.email,
   }).countDocuments();

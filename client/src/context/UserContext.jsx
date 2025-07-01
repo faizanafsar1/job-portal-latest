@@ -23,7 +23,6 @@ export const UserProvider = ({ children }) => {
       options.headers["Content-Type"] = "application/json";
     }
     const res = await fetch("http://localhost:5000/profile", options);
-
     if (res.ok) {
       const data = await res.json();
       setUserData(data.updated);

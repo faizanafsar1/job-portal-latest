@@ -10,6 +10,7 @@ router.get(
   requireRole("jobseeker"),
   userController.userDetails
 );
+
 router.put(
   "/profile",
   verifyToken,
@@ -17,6 +18,7 @@ router.put(
   requireRole("jobseeker"),
   userController.updateUserData
 );
+
 router.delete(
   "/profile/delete-resume",
   verifyToken,
