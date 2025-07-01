@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
+import { API } from "../config/config";
 
 const UserContext = createContext();
 export const UserProvider = ({ children }) => {
@@ -22,7 +23,7 @@ export const UserProvider = ({ children }) => {
       options.body = JSON.stringify(updatedData);
       options.headers["Content-Type"] = "application/json";
     }
-    const res = await fetch("http://localhost:5000/profile", options);
+    const res = await fetch(`${API}/profile`, options);
     if (res.ok) {
       const data = await res.json();
       setUserData(data.updated);
@@ -32,7 +33,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const handleToken = async () => {
-      const res = await fetch("http://localhost:5000/profile", {
+      const res = await fetch(`${API}/profile`, {
         credentials: "include",
         headers: { Authorization: `Bearer ${accessToken}` },
       });

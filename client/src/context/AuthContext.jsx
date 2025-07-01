@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
+import { API } from "../config/config";
 
 const AuthContext = createContext();
 
@@ -10,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const refreshAccessToken = async () => {
       try {
-        const res = await fetch("http://localhost:5000/refresh-token", {
+        const res = await fetch(`${API}/refresh-token`, {
           credentials: "include",
           method: "POST",
         });

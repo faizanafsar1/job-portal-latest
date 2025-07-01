@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createContext, useContext } from "react";
 import { useAuth } from "./AuthContext";
 import { useEffect } from "react";
+import { API } from "../config/config";
 
 const EmployerContext = createContext();
 export function EmployerProvider({ children }) {
@@ -12,7 +13,7 @@ export function EmployerProvider({ children }) {
     if (!accessToken) return;
 
     const handleData = async () => {
-      const res = await fetch("http://localhost:5000/dashboard-data", {
+      const res = await fetch(`${API}/dashboard-data`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
