@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "../../context/AuthContext";
+import { API } from "../../config/config";
 
 const SignUp = () => {
   const schema = yup.object().shape({
@@ -47,13 +48,14 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (formData) => {
-    const res = await fetch("http://localhost:5000/signup", {
+    const res = await fetch(`${API}/signup`, {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
         "Content-Type": "application/json",
       },
     });
+    console.log(res);
     if (res.ok) {
       const data = await res.json();
       setAccessToken(data.accessToken);

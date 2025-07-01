@@ -42,13 +42,12 @@ exports.signup = async (req, res) => {
     await newEmployer.save();
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
       path: "/",
     });
     res.status(200).send({ message: "signed up successfully", accessToken });
   } else {
-    w;
     const userExist = await User.findOne({ email: email });
     if (userExist) {
       return res
@@ -75,8 +74,8 @@ exports.signup = async (req, res) => {
     await newUser.save();
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
       path: "/",
     });
     res.status(200).send({ message: "signed up successfully", accessToken });
@@ -110,9 +109,9 @@ exports.login = async (req, res) => {
     await employerExist.save();
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
+      secure: true,
       path: "/",
-      sameSite: "strict",
+      sameSite: "none",
     });
     res.json({ message: "user logged in", accessToken });
   } else {
@@ -140,9 +139,9 @@ exports.login = async (req, res) => {
     await userExist.save();
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
+      secure: true,
       path: "/",
-      sameSite: "strict",
+      sameSite: "none",
     });
     res.json({ message: "user logged in", accessToken });
   }

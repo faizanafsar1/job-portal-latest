@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../components/Button";
 import { useAuth } from "../../context/AuthContext";
+import { API } from "../../config/config";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const Login = () => {
       setErrors(validationErrors);
       return;
     }
-    const res = await fetch("http://localhost:5000/login", {
+    const res = await fetch(`${API}/login`, {
       method: "POST",
       body: JSON.stringify(formData),
       credentials: "include",

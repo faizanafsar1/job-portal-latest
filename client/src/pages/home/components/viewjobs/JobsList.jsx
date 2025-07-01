@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import JobCard from "./components/JobCard";
 import ViewJobCard from "./components/ViewJobCard";
+import { API } from "../../../../config/config";
 const JobsList = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState({});
   useEffect(() => {
     const fetchJobs = async () => {
-      const res = await fetch("http://localhost:5000/jobs-list");
+      const res = await fetch(`${API}/jobs-list`);
       const jobsData = await res.json();
       setJobs(jobsData);
       setSelectedJob(jobsData[0]);

@@ -15,12 +15,12 @@ export const AuthProvider = ({ children }) => {
           credentials: "include",
           method: "POST",
         });
+        const data = await res.json();
         if (res.ok) {
-          const data = await res.json();
           setAccessToken(() => data.accessToken);
         } else {
           setAccessToken(null);
-          console.error("res error");
+          console.error("res error", data);
         }
       } catch (error) {
         console.error("Token Refresh error:", error);
