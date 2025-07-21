@@ -21,11 +21,5 @@ export default function Icon({ icon, size, className, onClick }) {
         return "text-base";
     }
   }, [size]);
-  return (
-    <FontAwesomeIcon
-      icon={icon}
-      className={clsx(iconSize, className)}
-      onClick={onClick}
-    />
-  );
+  return <FontAwesomeIcon icon={icon} className={clsx(iconSize, className)} onClick={onClick} />;
 }

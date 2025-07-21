@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "./Icon";
+import { useNavigate } from "react-router-dom";
 import {
   faArrowRightArrowLeft,
   faCommentDots,
@@ -10,6 +11,8 @@ import {
   faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import { useAuth } from "../context/AuthContext";
 const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   return (
@@ -23,18 +26,19 @@ const Header = () => {
           </div>
 
           <nav className="hidden md:flex space-x-8">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="text-gray-900 hover:text-primary-dark border-b-2 border-transparent hover:border-primary-dark pb-4 font-medium "
             >
               Home
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link to="/employer-dashboard">Employer Dashboard</Link>
+            <Link
+              to="#"
               className="text-gray-900 hover:text-primary-dark border-b-2 border-transparent hover:border-primary-dark pb-4 font-medium "
             >
               Company reviews
-            </a>
+            </Link>
           </nav>
         </div>
         <div className=" flex space-x-5 h-full items-end">
@@ -78,6 +82,26 @@ const Header = () => {
 };
 
 const UserDropdown = () => {
+  const navigate = useNavigate();
+  const { userData, setUserData } = useUser();
+  const { setAccessToken } = useAuth();
+  const handleSignOut = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/signout", {
+        credentials: "include",
+      });
+      if (res.ok) {
+        const data = await res.json();
+        alert(data.message);
+        navigate("/login");
+        setAccessToken(null);
+        setUserData(null);
+      }
+    } catch (error) {
+      console.error("Error during sign out", error);
+    }
+  };
+
   return (
     <div className="w-64 rounded-md border border-gray-200 shadow-md bg-white">
       <ul className="py-2 text-sm text-gray-700">
@@ -107,12 +131,16 @@ const UserDropdown = () => {
           Privacy Center
         </li>
       </ul>
-
-      <div className="hover:bg-primary-light/5 group border-t cursor-pointer text-center border-gray-200 px-4 py-2">
-        <span className="text-primary-dark group-hover:underline text-center text-sm ">
-          Sign out
-        </span>
-      </div>
+      {userData && (
+        <div
+          onClick={handleSignOut}
+          className="hover:bg-primary-light/5 group border-t cursor-pointer text-center border-gray-200 px-4 py-2"
+        >
+          <Link className="text-primary-dark group-hover:underline text-center text-sm ">
+            Sign out
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

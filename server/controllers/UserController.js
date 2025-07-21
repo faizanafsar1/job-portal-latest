@@ -2,6 +2,7 @@ const User = require("../models/User");
 const cloudinary = require("cloudinary").v2;
 const Job = require("../models/Job");
 const JobApplication = require("../models/JobApplication");
+
 exports.userDetails = async (req, res) => {
   const userId = req.user.userId;
   const user = await User.findById(userId).select("-password -refreshToken");
@@ -79,7 +80,7 @@ exports.JobApplication = async (req, res) => {
     jobDetails: { ...job, jobId: jobId },
     userDetails: { ...user },
   });
-
+  HOW;
   await newJobApplication.save();
   res.status(200).send({ message: "Application Submitted Successfully" });
 };

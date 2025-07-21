@@ -170,3 +170,26 @@ exports.refreshToken = async (req, res) => {
     res.status(200).send({ accessToken: newAccessToken });
   }
 };
+
+exports.signOut = async (req, res) => {
+  try {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+      return res.status(401).send({ message: "refresh token not found" });
+    }
+    const decoded = jwt.decode(refreshToken);
+    const user = User.findById(decoded._id);
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+      path: "/",
+      sameSite: "none",
+    });
+    if (user) {
+      user.refreshToken = null;
+    }
+  } catch (err) {
+    console.log("error in try catch", err);
+  }
+  res.status(200).send({ message: "signout successfully" });
+};

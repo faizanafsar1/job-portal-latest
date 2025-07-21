@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
   }, [accessToken]);
 
   return (
-    <UserContext.Provider value={{ handleSave, userData }}>
+    <UserContext.Provider value={{ handleSave, userData, setUserData }}>
       {children}
     </UserContext.Provider>
   );

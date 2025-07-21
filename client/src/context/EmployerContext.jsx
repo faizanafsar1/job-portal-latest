@@ -21,6 +21,7 @@ export function EmployerProvider({ children }) {
       });
       const data = await res.json();
       setDashboardData(data);
+      console.log(data);
     };
     handleData();
   }, [accessToken]);

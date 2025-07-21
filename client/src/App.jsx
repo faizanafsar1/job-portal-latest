@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Index";
-import ApplyJob from "./pages/applyjob/ApplyJob";
-import PostJob from "./pages/postjob/PostJob";
-import Profile from "./pages/profile/Profile";
+import PostJob from "./pages/employer-pages/postjob/PostJob";
+import Profile from "./pages/job-seeker-pages/profile/Profile";
 import Login from "./pages/login/Login";
 import ProtectedRouteJobSeeker from "./components/ProtectedRouteJobSeeker";
 import ProtectedRouteEmployer from "./components/ProtectedRouteEmployer";
-import EmployerDashboard from "./pages/employer-dashboard/EmployerDashboard";
+import EmployerDashboard from "./pages/employer-pages/employer-dashboard/EmployerDashboard";
 import SignUp from "./pages/signup/SignUp";
+import ApplyJob from "./pages/job-seeker-pages/applyjob/ApplyJob";
 
 function App() {
   return (

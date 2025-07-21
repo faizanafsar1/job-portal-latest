@@ -7,10 +7,7 @@ const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 
 connectDB();
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://job-portal-alpha-nine.vercel.app",
-];
+const allowedOrigins = ["http://localhost:3000", "https://job-portal-alpha-nine.vercel.app"];
 app.use(
   cors({
     origin: allowedOrigins,
@@ -22,12 +19,15 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/", require("./routes/ApplicationRoutes"));
+app.use("/", require("./routes/JobRoutes"));
 app.use("/", require("./routes/UserRoutes"));
-app.use("/", require("./routes/employerRoutes"));
+app.use("/", require("./routes/EmployerRoutes"));
 app.use("/", require("./routes/AuthRoutes"));
-app.get("/", (req, res) => {
-  res.send("API is running 🚀");
-});
+
 app.listen(port, () => {
   console.log("server running at : ", port);
+});
+app.get("/", (req, res) => {
+  res.send({ message: "running" });
 });

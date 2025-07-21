@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
           setAccessToken(() => data.accessToken);
         } else {
           setAccessToken(null);
-          console.error("res error", data);
+          console.error("res error", data.message);
         }
       } catch (error) {
         console.error("Token Refresh error:", error);

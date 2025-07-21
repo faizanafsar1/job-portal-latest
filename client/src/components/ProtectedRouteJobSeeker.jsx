@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { jwtDecode } from "jwt-decode";
 const ProtectedRouteJobSeeker = ({ children }) => {
   const { accessToken, loading } = useAuth();
+
   if (loading || accessToken === undefined) {
     return (
       <div className="w-screen h-screen bg-gray-300 ">
@@ -12,8 +13,15 @@ const ProtectedRouteJobSeeker = ({ children }) => {
       </div>
     );
   }
-  const decoded = jwtDecode(accessToken);
-  if (!accessToken || decoded.role === "employer") {
+
+  if (accessToken) {
+    const decoded = jwtDecode(accessToken);
+    if (decoded.role === "employer") {
+      return <Navigate to="/login" />;
+    } else {
+      return children;
+    }
+  } else if (!accessToken) {
     return <Navigate to="/login" />;
   }
 

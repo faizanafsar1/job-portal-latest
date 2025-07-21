@@ -1,31 +1,31 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 
 export default function ProtectedRouteEmployer({ children }) {
   const { accessToken, isLoading } = useAuth();
-
-  // Still loading or token not ready
-  if (isLoading || !accessToken || typeof accessToken !== "string") {
+  // const [delay, setDelay] = useState(true);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setDelay(false);
+  //   }, 300);
+  // });
+  if (isLoading || accessToken === undefined) {
     return (
       <div className="w-screen h-screen bg-gray-300 flex items-center justify-center">
         <span className="text-black text-3xl">...loading</span>
       </div>
     );
   }
-
-  let decoded;
-  try {
-    decoded = jwtDecode(accessToken);
-  } catch (error) {
-    console.error("Invalid token:", error.message);
+  if (accessToken) {
+    const decoded = jwtDecode(accessToken);
+    if (decoded.role === "jobseeker") {
+      return <Navigate to="/login" />;
+    } else {
+      return children;
+    }
+  } else if (!accessToken) {
     return <Navigate to="/login" />;
   }
-
-  // If the role is not employer, redirect
-  if (decoded.role !== "employer") {
-    return <Navigate to="/login" />;
-  }
-
-  return children;
 }
