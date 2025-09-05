@@ -45,11 +45,7 @@ export const UserProvider = ({ children }) => {
     handleToken();
   }, [accessToken]);
 
-  return (
-    <UserContext.Provider value={{ handleSave, userData, setUserData }}>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext.Provider value={{ handleSave, userData, setUserData }}>{children}</UserContext.Provider>;
 };
 
 export const useUser = () => useContext(UserContext);
