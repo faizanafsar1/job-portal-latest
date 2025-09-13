@@ -1,57 +1,34 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Index";
-import PostJob from "./pages/employer-pages/postjob/PostJob";
-import Profile from "./pages/job-seeker-pages/profile/Profile";
-import Login from "./pages/login/Login";
-import ProtectedRouteJobSeeker from "./components/ProtectedRouteJobSeeker";
-import ProtectedRouteEmployer from "./components/ProtectedRouteEmployer";
-import EmployerDashboard from "./pages/employer-pages/employer-dashboard/EmployerDashboard";
-import SignUp from "./pages/signup/SignUp";
-import ApplyJob from "./pages/job-seeker-pages/applyjob/ApplyJob";
+import Contact from "./pages/contact/Contact";
+import About from "./pages/about/about";
+import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy";
+
+//to generate some limited dynamic pages statically
+
+// export function generateParams() {
+//   return [
+//     {
+//       blodId: "1",
+//     },
+//     {
+//       blodId: "2",
+//     },
+//   ];
+// }
+// to stop rendering more pages
+// export const dynamicParams = false;
+
+//force fully render static page dynamically
+// export const dynamic = "force-dynamic";
 
 function App() {
   return (
     <Routes>
-      {/* protected routes for employer */}
-      <Route
-        path="/postjob"
-        element={
-          <ProtectedRouteEmployer>
-            <PostJob />
-          </ProtectedRouteEmployer>
-        }
-      ></Route>
-      <Route
-        path="/employer-dashboard"
-        element={
-          <ProtectedRouteEmployer>
-            <EmployerDashboard />
-          </ProtectedRouteEmployer>
-        }
-      ></Route>
-      {/* protected routes for jobseeker */}
-      <Route
-        path="/profile"
-        element={
-          <ProtectedRouteJobSeeker>
-            <Profile />
-          </ProtectedRouteJobSeeker>
-        }
-      ></Route>
-      <Route
-        path="/applyjob/:id"
-        element={
-          <ProtectedRouteJobSeeker>
-            <ApplyJob />
-          </ProtectedRouteJobSeeker>
-        }
-      ></Route>
-
-      {/* open routes */}
-
       <Route path="/" element={<Home />}></Route>
-      <Route path="/login" element={<Login />}></Route>
-      <Route path="/signup" element={<SignUp />}></Route>
+      <Route path="/contact" element={<Contact />}></Route>
+      <Route path="/about" element={<About />}></Route>
+      <Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
     </Routes>
   );
 }

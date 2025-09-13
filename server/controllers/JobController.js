@@ -1,5 +1,4 @@
 const jobCollection = require("../models/Job");
-const JobApplication = require("../models/JobApplication");
 
 exports.getAllJobs = async (req, res) => {
   const jobs = await jobCollection.find();

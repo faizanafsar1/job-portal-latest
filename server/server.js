@@ -19,15 +19,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", require("./routes/ApplicationRoutes"));
 app.use("/", require("./routes/JobRoutes"));
-app.use("/", require("./routes/UserRoutes"));
-app.use("/", require("./routes/EmployerRoutes"));
-app.use("/", require("./routes/AuthRoutes"));
+app.use("/", require("./Scrapping"));
 
 app.listen(port, () => {
   console.log("server running at : ", port);
-});
-app.get("/", (req, res) => {
-  res.send({ message: "running" });
 });

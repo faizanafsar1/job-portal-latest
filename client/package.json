@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^7.0.1",
+    "@fortawesome/free-regular-svg-icons": "^7.0.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@fortawesome/react-fontawesome": "^0.2.6",
     "@hookform/resolvers": "^5.1.1",
     "@tailwindcss/vite": "^4.1.8",
     "@tinymce/tinymce-react": "^6.2.1",
